@@ -1,6 +1,6 @@
 {
-  "name": "DX NET Season Scraper",
-  "version": "0.1.0",
+  "name": "DX-NET-Season-Scraper",
+  "version": "0.1.1",
   "description": "A NodeJS scraper for the MaiMai DX International website for grabbing season rankings.",
   "main": "index.js",
   "author": {
