@@ -480,3 +480,5 @@ FodyWeavers.xsd
 # Ignore config file for password security and ignore scores.json output
 config.json
 scores.json
+*.njsproj
+*.sln
