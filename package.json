@@ -1,0 +1,16 @@
+{
+  "name": "dx-scrape",
+  "version": "0.0.1",
+  "description": "DX Scrape",
+  "main": "index.js",
+  "author": {
+    "name": "Anthony Raudino"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "puppeteer": "^13.3.2"
+  }
+}
