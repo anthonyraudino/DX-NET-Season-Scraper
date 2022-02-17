@@ -60,13 +60,13 @@ const scraperObject = {
 			visible: true,
 		});
 
-		console.log('Pulling season data');
+		console.log('Pulling top 100 season data');
 
 		// OK so this website is hot garbage. So we're iterating based on the block containing the player name and score
-		const tableLength = await page.$$eval('.ranking_top_block', el => el.length)
+		const top100Table = await page.$$eval('.ranking_top_block', el => el.length)
 
 		// Start iterating (NOTE: The DX Net website is hot garbage and currently the first row of the ACTUAL DATA starts from 8. LMAO)
-		for (let i = 8; i < tableLength + 1; i++) {
+		for (let i = 8; i < top100Table + 1; i++) {
 			const name = await page.evaluate(el => el.innerText, await page.$(`.ranking_top_block:nth-child(${i}) > .ranking_top_inner_block > .f_l.p_t_10.p_l_10.f_15`))
 			const sp = await page.evaluate(el => el.innerText, await page.$(`.ranking_top_block:nth-child(${i}) > .ranking_top_inner_block > div.p_t_10.p_r_10.f_r.f_14`))
 			
@@ -75,6 +75,24 @@ const scraperObject = {
 			data.push(newRank)
 		}
 		console.log(data)
+
+		console.log('Pulling top 500 season data');
+
+
+		// OK so this website is hot garbage. So we're iterating based on the block containing the player name and score
+		const top500table = await page.$$eval('body > div.wrapper.main_wrapper.t_c > div', el => el.length)
+
+		// Start iterating (NOTE: The DX Net website is hot garbage and currently the first row of the ACTUAL DATA starts from 8. LMAO)
+		for (let i = 108; i < top500table + 1; i++) {
+			const name = await page.evaluate(el => el.innerText, await page.$(`.ranking_block:nth-child(${i}) > .ranking_inner_block  > .f_l.p_t_10.p_l_10.f_15`))
+			const sp = await page.evaluate(el => el.innerText, await page.$(`.ranking_block:nth-child(${i}) > .ranking_inner_block  > div.p_t_10.p_r_10.f_r.f_14`))
+
+			// Write this row to our array
+			const newRank = new Rank(name, sp)
+			data.push(newRank)
+		}
+		console.log(data)
+
 
 		//Aight lets write the array to a json file called scores.json. its sitting in the same folder as the node application
 		fs.writeFile("scores.json", JSON.stringify(data), function (err) {
