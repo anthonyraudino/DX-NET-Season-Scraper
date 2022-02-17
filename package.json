@@ -1,7 +1,7 @@
 {
-  "name": "dx-scrape",
-  "version": "0.0.1",
-  "description": "DX Scrape",
+  "name": "DX NET Season Scraper",
+  "version": "0.1.0",
+  "description": "A NodeJS scraper for the MaiMai DX International website for grabbing season rankings.",
   "main": "index.js",
   "author": {
     "name": "Anthony Raudino"
