@@ -482,3 +482,4 @@ config.json
 scores.json
 *.njsproj
 *.sln
+scores_s1.json

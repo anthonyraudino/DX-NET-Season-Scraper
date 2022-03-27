@@ -12,7 +12,8 @@ try {
 }
 
 const intl_login = 'https://lng-tgk-aime-gw.am-all.net/common_auth/login?site_id=maimaidxex&redirect_url=https://maimaidx-eng.com/maimai-mobile/&back_url=https://maimai.sega.com/';
-const intl_season = 'https://maimaidx-eng.com/maimai-mobile/ranking/seasonRanking/';
+const intl_season1 = 'https://maimaidx-eng.com/maimai-mobile/ranking/seasonRanking/?season=2001';
+const intl_season2 = 'https://maimaidx-eng.com/maimai-mobile/ranking/seasonRanking/?season=2002';
 
 // Our data array ready to get populated
 const data = []
@@ -51,16 +52,16 @@ const scraperObject = {
 		]);
 
 		// Yeet, the login is done. We should be on the homepage of DX Net now, lets go to the season page.
-		console.log(`Navigating to ${intl_season}...`);
+		console.log(`Navigating to ${intl_season1}...`);
 
-		await page.goto(intl_season);
+		await page.goto(intl_season1);
 		
 		// we wait for the data we want to grab to actually load first
 		await page.waitForSelector('.f_l.p_t_10.p_l_10.f_15', {
 			visible: true,
 		});
 
-		console.log('Pulling top 100 season data');
+		console.log('Pulling top 100 season 1 data');
 
 		// OK so this website is hot garbage. So we're iterating based on the block containing the player name and score
 		const top100Table = await page.$$eval('.ranking_top_block', el => el.length)
@@ -95,7 +96,7 @@ const scraperObject = {
 
 
 		//Aight lets write the array to a json file called scores.json. its sitting in the same folder as the node application
-		fs.writeFile("scores.json", JSON.stringify(data), function (err) {
+		fs.writeFile("scores_s1.json", JSON.stringify(data), function (err) {
 			if (err) throw err;
 			console.log('complete');
 			//We done, lets GTFO
